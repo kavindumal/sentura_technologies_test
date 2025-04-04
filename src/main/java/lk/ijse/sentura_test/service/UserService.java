@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
 
+import org.json.JSONObject;
+import org.json.JSONArray;
+
 @Service
 public class UserService {
 
@@ -20,7 +23,13 @@ public class UserService {
     }
 
     public String listUsers() throws IOException {
-        return httpUtil.get(weavyConfig.getWeavyApiUrl(), weavyConfig.getWeavyApiToken());
+        String response = httpUtil.get(weavyConfig.getWeavyApiUrl(), weavyConfig.getWeavyApiToken());
+
+        JSONObject jsonResponse = new JSONObject(response);
+
+        JSONArray usersArray = jsonResponse.getJSONArray("data");
+
+        return usersArray.toString();
     }
 
     public String getUser(String userId) throws IOException {
