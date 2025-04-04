@@ -1,25 +1,22 @@
 package lk.ijse.sentura_test.config;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class WeavyConfig {
 
-    @Value("${weavy.url:https://8015b5dbc0724d38882ac90397c27649.weavy.io}")
-    private String weavyUrl;
+    @Value("${weavy.api.url}")
+    private String weavyApiUrl;
 
-    @Value("${weavy.api-key:wys_hMWpXdekxcn9Gc8Ioah3azOllzUZ7l3HN9yB}")
-    private String weavyApiKey;
+    @Value("${weavy.api.token}")
+    private String weavyApiToken;
 
-    @Bean
-    public String weavyUrl() {
-        return weavyUrl;
+    public String getWeavyApiUrl() {
+        return weavyApiUrl;
     }
 
-    @Bean
-    public String weavyApiKey() {
-        return weavyApiKey;
+    public String getWeavyApiToken() {
+        return weavyApiToken;
     }
 }
